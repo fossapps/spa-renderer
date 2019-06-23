@@ -1,0 +1,16 @@
+.jest
+src
+umd
+.dockerignore
+.gitignore
+.npmignore
+.travis.yml
+Dockerfile
+JestBootstrap.ts
+package.json
+package-lock.json
+README.md
+tsconfig.json
+tslint.json
+wallaby.js
+webpack.config.js
