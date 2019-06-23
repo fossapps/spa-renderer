@@ -39,8 +39,9 @@ export class Server {
     @autobind
     public async serve(request: Request, response: Response): Promise<void> {
         const url = request.query.url;
-        console.debug(`rendering ${url}`);
-        const html = await this.browser.renderHtml(url);
+        const removeScript = request.query.static === "true";
+        console.debug(`rendering ${removeScript ? "static" : ""} ${url}`);
+        const html = removeScript ? await this.browser.renderStaticHtml(url) : await this.browser.renderHtml(url);
         response.end(html);
     }
 

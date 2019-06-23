@@ -46,6 +46,21 @@ export class Chrome implements IDriver {
         await page.close();
         return content;
     }
+    public async renderStaticHtml(url: string): Promise<string> {
+        const page = await this.visit(url);
+        const content = await page.evaluate(() => {
+            // script is actually HTMLScriptElement but we're disabling the dom context for this project because it's mostly nodejs
+            // except for this function, so any is fine
+            // @ts-ignore this function is run in the browser with dom context
+            Array.from(document.getElementsByTagName("script")).forEach((script: any) => {
+                script.parentNode!.removeChild(script);
+            });
+            // @ts-ignore this function is run in the browser with dom context
+            return document.documentElement.innerHTML;
+        });
+        await page.close();
+        return content;
+    }
 
     public async renderPdf(url: string): Promise<Buffer> {
         const page = await this.visit(url);
