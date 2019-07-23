@@ -21,7 +21,7 @@
   "dependencies": {
     "autobind-decorator": "^2.4.0",
     "express": "^4.17.1",
-    "puppeteer-core": "^1.18.0"
+    "puppeteer-core": "1.18.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.0",
